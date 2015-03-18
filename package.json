@@ -1,0 +1,41 @@
+{
+  "name": "getmiles.io",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/beaulebens/getmiles.io.git"
+  },
+  "description": "Manage milestones in your Github projects, better.",
+  "main": "app/index.js",
+  "dependencies": {
+    "events": "^1.0.2",
+    "express": "^4.12.2",
+    "lodash": "^3.5.0",
+    "qs": "^2.4.1",
+    "react": "^0.8.0",
+    "store": "^1.3.17",
+    "xhr": "^2.0.1"
+  },
+  "devDependencies": {
+    "browserify": "9.0.3",
+    "envify": "0.2.0",
+    "reactify": "0.12.1",
+    "statics": "0.1.0",
+    "uglifyjs": "2.4.10",
+    "watchify": "2.4.0"
+  },
+  "scripts": {
+    "start": "node server.js & STATIC_ROOT=./static watchify app/ --extension=.jsx -o ./static/miles.js -v -d",
+    "build": "STATIC_ROOT=./static NODE_ENV=production browserify app/ | uglifyjs -cm > ./static/miles.min.js",
+    "collect-static": "collect-static . ./static",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pete Hunt",
+  "license": "Apache 2",
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
+  }
+}
